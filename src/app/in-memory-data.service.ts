@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { InMemoryDbService, RequestInfo } from 'angular-in-memory-web-api';
+import { InMemoryDbService } from 'angular-in-memory-web-api';
 import { Observable } from 'rxjs';
 import { Hero } from './hero';
 import { HEROES } from './mock-heroes';
@@ -8,8 +8,9 @@ import { HEROES } from './mock-heroes';
   providedIn: 'root'
 })
 export class InMemoryDataService implements InMemoryDbService {
-  createDb(reqInfo?: RequestInfo): {} | Observable<{}> | Promise<{}> {
-    return { HEROES };
+  createDb(): {} | Observable<{}> | Promise<{}> {
+    const heroes = [...HEROES];
+    return { heroes };
   }
 
   genId(heroes: Hero[]): number {
